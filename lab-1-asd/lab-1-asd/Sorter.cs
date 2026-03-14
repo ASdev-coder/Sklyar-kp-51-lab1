@@ -24,22 +24,21 @@ public class Sorter
         new StudentResult("Denys", "Logic", 59),
         new StudentResult("Kateryna", "Game Theory", 74)
     };
-    
-    public void InitCollection()
+    public Sorter()
     {
-        StudentResults = new List<StudentResult>();
+        InitCollection();
     }
-
     public void AddResult(StudentResult result)
     {
         StudentResults.Add(result);
+        Console.WriteLine($"Result for {result.Surname} added\n");
     }
     
     public void RemoveResult(string surname)
     {
         if (StudentResults.Count == 0)
         {
-            Console.WriteLine("Collection is empty");
+            Console.WriteLine("Collection is empty\n");
             return;
         }
 
@@ -49,12 +48,12 @@ public class Sorter
             {
                 StudentResults.Remove(StudentResults[i]);
                 
-                Console.WriteLine("Result removed");
+                Console.WriteLine($"Result for {surname} removed\n");
                 return;
             }
         }
         
-        Console.WriteLine("Result not found");
+        Console.WriteLine($"Result for {surname} not found\n");
     }
 
     public void PrintCollection()
@@ -72,23 +71,26 @@ public class Sorter
             StudentResults.Add(studentResult);
         }
 
-        Console.WriteLine("Control data successfully added");
+        Console.WriteLine("Control data successfully added\n");
     }
     
     public void Sort()
     {
-        Console.WriteLine("Empty");   
+        Console.WriteLine("Empty\n");   
     }
     
     public void PrintIntermediateResults()
     {
-        Console.WriteLine("Empty");
+        Console.WriteLine("Empty\n");
     }
     
     public void PrintStatistics()
     {
-        Console.WriteLine("Empty");   
+        Console.WriteLine("Empty\n");   
     }
     
-    
+    private void InitCollection()
+    {
+        StudentResults = new List<StudentResult>();
+    }
 }

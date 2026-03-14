@@ -17,6 +17,6 @@ public class StudentResult
     
     public override string ToString()
     {
-        return $"{Surname} {Discipline} {Score}";
+        return $"{Surname}: {Discipline}-{Score}";
     }
 }
