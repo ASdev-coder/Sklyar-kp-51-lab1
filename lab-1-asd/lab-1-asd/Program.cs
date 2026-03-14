@@ -4,19 +4,44 @@ namespace lab_1_asd;
 
 class Program
 {
+    public static Sorter sorter = new Sorter();
+    
     static void Main(string[] args)
     {
-        Sorter sorter = new Sorter();
-        sorter.AddControlDataToCollection();
-        sorter.PrintCollection();
-        sorter.Sort();
-        sorter.PrintCollection();
-        sorter.PrintStatistics();
-        sorter.PrintIntermediateResults();
-        sorter.RemoveResult("Anton");
-        sorter.PrintCollection();
-        sorter.AddResult(GetResult());
-        sorter.PrintCollection();
+        
+        while(true)
+        {
+            Menu.PrintMenu();
+            int option = Menu.GetOption();
+
+            switch (option)
+            {
+                case 1:
+                    AddResult();
+                    break;
+                case 2:
+                    RemoveResult();
+                    break;
+                case 3:
+                    Program.sorter.PrintCollection();
+                    break;
+                case 4:
+                    Program.sorter.AddControlDataToCollection();
+                    break;
+                case 5:
+                    Program.sorter.Sort();
+                    break;
+                case 6:
+                    Program.sorter.PrintStatistics();
+                    break;
+                case 7:
+                    Console.WriteLine("Goodbye!");
+                    return;
+                default:
+                    Console.WriteLine("Invalid option. Please try again.");
+                    break;
+            }
+        }
     }
 
     static StudentResult GetResult()
@@ -27,7 +52,6 @@ class Program
 
         return new StudentResult(surname, discipline, score);
     }
-    
     static string GetStringInputWithConstraints(StringInputEnum enumType)
     {
         while (true)
@@ -56,7 +80,6 @@ class Program
             Console.WriteLine("Invalid input. Please try again.");
         }
     }
-    
     static bool ValidateStringInput(string input, StringInputEnum enumType)
     {
         if (string.IsNullOrWhiteSpace(input)) return false;
@@ -68,12 +91,10 @@ class Program
             _ => false
         };
     }
-    
     static bool ValidateIntInput(int input)
     {
         return input >= 0 && input <= 100;
     }
-
     static int GetScoreInputWithConstraints()
     {
         while (true)
@@ -89,5 +110,13 @@ class Program
             Console.WriteLine("Invalid input. Please try again.");
         }
         
+    }
+    static void AddResult()
+    {
+        sorter.AddResult(GetResult());
+    }
+    static void RemoveResult()
+    {
+        sorter.RemoveResult(GetStringInputWithConstraints(StringInputEnum.Surname));
     }
 }
