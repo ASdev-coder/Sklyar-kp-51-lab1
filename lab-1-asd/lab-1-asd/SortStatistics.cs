@@ -7,8 +7,9 @@ public class SortStatistics
     public int LoopIterations { get; set; }
     public int Copies { get; set; }
     public double ExecutionTimeMs { get; set; }
+    public double Median { get; set; }
+    public int Mode { get; set; }
     public int[] PassResults = new int[4];
-
     public void Print()
     {
         Console.WriteLine("=== Sort Statistics (Algorithm part) ===");
@@ -23,6 +24,9 @@ public class SortStatistics
         Console.WriteLine($"Count of passed well students: {PassResults[2]}");
         Console.WriteLine($"Count of passed excellent students: {PassResults[3]}");
         Console.WriteLine($"Count of all passed: {PassResults[1] + PassResults[2] + PassResults[3]}");
+        Console.WriteLine("=== Extra Statistics (Data part) ===");
+        Console.WriteLine($"Median of scores: {Median}");
+        Console.WriteLine($"Mode of scores: {Mode}");
         Console.WriteLine("=======================\n");
     }
 }

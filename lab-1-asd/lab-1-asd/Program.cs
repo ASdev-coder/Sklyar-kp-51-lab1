@@ -5,10 +5,8 @@ namespace lab_1_asd;
 class Program
 {
     public static Sorter sorter = new Sorter();
-    
     static void Main(string[] args)
     {
-        
         while(true)
         {
             Menu.PrintMenu();
@@ -43,7 +41,6 @@ class Program
             }
         }
     }
-
     static StudentResult GetResult()
     {
         string surname = GetStringInputWithConstraints(StringInputEnum.Surname);

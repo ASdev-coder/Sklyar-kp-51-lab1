@@ -6,7 +6,6 @@ public class StudentResult
     public string Surname { get; set; }
     public string Discipline { get; set; }
     public int Score { get; set; }
-
     public StudentResult(string surname, string discipline, int score)
     {
         StudentId = Guid.NewGuid();
@@ -14,7 +13,6 @@ public class StudentResult
         Discipline = discipline;
         Score = score;
     }
-    
     public override string ToString()
     {
         return $"{Surname}: {Discipline}-{Score}";

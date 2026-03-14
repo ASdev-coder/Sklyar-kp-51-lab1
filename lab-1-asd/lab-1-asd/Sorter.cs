@@ -37,7 +37,6 @@ public class Sorter
         IsSorted = false;
         Console.WriteLine($"Result for: {result.Surname} - added\n");
     }
-    
     public void RemoveResult(string surname)
     {
         if (StudentResults.Count == 0)
@@ -59,7 +58,6 @@ public class Sorter
         
         Console.WriteLine($"\nResult for: {surname} - not found\n");
     }
-
     public void PrintCollection()
     {
         if(StudentResults.Count == 0) 
@@ -67,13 +65,12 @@ public class Sorter
             Console.WriteLine("\nCollection is empty\n");
             return;
         }
-        
-        foreach (var studentResult in StudentResults)
+
+        for (int i = StudentResults.Count - 1; i >= 0; i--)
         {
-            Console.WriteLine(studentResult);
+            Console.WriteLine($"{i + 1}. {StudentResults[i]}");
         }
     }
-
     public void AddControlDataToCollection()
     {
         foreach (var studentResult in _controlData)
@@ -85,7 +82,6 @@ public class Sorter
         
         Console.WriteLine("\nControl data successfully added\n");
     }
-    
     public void Sort()
     {
         if(StudentResults.Count == 0) 
@@ -116,7 +112,7 @@ public class Sorter
         PrintIntermediateSteps(3, "Distributed all students into buckets based on their scores", countList);
         
         int collectionCounter = 0;
-        for (int i = max; i >= 0; i--)
+        for (int i = 0; i <= max; i++)
         {
             _sortStatistics.LoopIterations++;
             int counter = countList[i].Count;
@@ -135,8 +131,8 @@ public class Sorter
         DateTime endTime = DateTime.Now;
         IsSorted = true;
         _sortStatistics.ExecutionTimeMs = (endTime - startTime).TotalMilliseconds;
+        FindMedian();
     }
-    
     public void PrintIntermediateSteps(int stepNumber, string description, List<List<StudentResult>>? countList = null)
     {
         Console.Write("------------------------------------------------");
@@ -169,7 +165,6 @@ public class Sorter
         }
         Console.WriteLine("------------------------------------------------");
     }
-    
     public void PrintStatistics()
     {
         if (_sortStatistics == null)
@@ -178,13 +173,11 @@ public class Sorter
             return;
         }
         _sortStatistics.Print();
-    }  
-    
+    }
     private void InitCollection()
     {
         StudentResults = new List<StudentResult>();
     }
-
     private int FindMaxScore()
     {
         if (StudentResults.Count == 0) return 0;
@@ -203,7 +196,6 @@ public class Sorter
 
         return maxScore;
     }
-    
     private List<List<StudentResult>> GetCountList(int max)
     {
         List<List<StudentResult>> countList = new List<List<StudentResult>>();
@@ -216,7 +208,6 @@ public class Sorter
 
         return countList;
     }
-    
     private void FillCountList(List<List<StudentResult>> countList)
     {
         foreach (var studentResult in StudentResults)
@@ -227,7 +218,6 @@ public class Sorter
             _sortStatistics.Copies++;
         }
     }
-    
     private void FillPassResults(StudentResult studentResult)
     {
         if (studentResult.Score >= (int)PassResult.PassedExcellent)
@@ -249,5 +239,20 @@ public class Sorter
             _sortStatistics.PassResults[0]++;
         }
         
+    }
+    private void FindMedian()
+    {
+        if (StudentResults.Count == 0) return;
+
+        if (StudentResults.Count % 2 == 0)
+        {
+            int scoreOne = StudentResults[(StudentResults.Count / 2)-1].Score;
+            int scoreTwo = StudentResults[StudentResults.Count / 2].Score;
+            _sortStatistics.Median = (scoreOne + scoreTwo) / 2.0;
+            return;
+        }
+
+        int medianIndex = (StudentResults.Count - 1) / 2;
+        _sortStatistics.Median = StudentResults[medianIndex].Score;
     }
 }

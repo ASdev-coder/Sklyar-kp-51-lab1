@@ -8,7 +8,6 @@ public static class Menu
         "Print Collection", "Add Control Data", "Sort",
         "Print Statistics", "Exit"
     ];
-
     public static void PrintMenu()
     {
         Console.WriteLine();
@@ -19,7 +18,6 @@ public static class Menu
         }
         Console.Write("\nSelect an option: ");
     }
-    
     public static int GetOption()
     {
         bool isInt = int.TryParse(Console.ReadLine(), out int option);
