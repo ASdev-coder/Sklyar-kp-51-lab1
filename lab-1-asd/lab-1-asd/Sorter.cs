@@ -217,6 +217,8 @@ public class Sorter
             countList[studentResult.Score].Add(studentResult);
             _sortStatistics.Copies++;
         }
+        
+        FindMode(countList);
     }
     private void FillPassResults(StudentResult studentResult)
     {
@@ -254,5 +256,19 @@ public class Sorter
 
         int medianIndex = (StudentResults.Count - 1) / 2;
         _sortStatistics.Median = StudentResults[medianIndex].Score;
+    }
+    private void FindMode(List<List<StudentResult>> list)
+    {
+        int max = 1;
+
+        foreach (var item in  list)
+        {
+            if (item.Count > max)
+            {
+                max = item.Count;
+            }
+        }
+        
+        _sortStatistics.Mode = max;
     }
 }
