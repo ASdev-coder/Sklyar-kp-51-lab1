@@ -1,0 +1,7 @@
+bin/
+obj/
+
+*.sln
+.idea
+
+.DS_Store
