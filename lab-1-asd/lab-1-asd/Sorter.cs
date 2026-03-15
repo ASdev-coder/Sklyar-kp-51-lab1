@@ -180,8 +180,6 @@ public class Sorter
     }
     private int FindMaxScore()
     {
-        if (StudentResults.Count == 0) return 0;
-
         int maxScore = StudentResults[0].Score;
 
         for (int i = 1; i < StudentResults.Count; i++)
@@ -210,8 +208,9 @@ public class Sorter
     }
     private void FillCountList(List<List<StudentResult>> countList)
     {
-        foreach (var studentResult in StudentResults)
+        for (int i = 0; i < StudentResults.Count; i++)
         {
+            var studentResult = StudentResults[i];
             FillPassResults(studentResult);
             _sortStatistics.LoopIterations++;
             countList[studentResult.Score].Add(studentResult);
