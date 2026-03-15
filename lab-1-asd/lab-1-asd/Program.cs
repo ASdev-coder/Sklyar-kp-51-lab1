@@ -4,7 +4,7 @@ namespace lab_1_asd;
 
 class Program
 {
-    public static Sorter sorter = new Sorter();
+    public static Sorter Sorter = new Sorter();
     static void Main(string[] args)
     {
         while(true)
@@ -21,16 +21,16 @@ class Program
                     RemoveResult();
                     break;
                 case 3:
-                    Program.sorter.PrintCollection();
+                    Program.Sorter.PrintCollection();
                     break;
                 case 4:
-                    Program.sorter.AddControlDataToCollection();
+                    Program.Sorter.AddControlDataToCollection();
                     break;
                 case 5:
-                    Program.sorter.Sort();
+                    Program.Sorter.Sort();
                     break;
                 case 6:
-                    Program.sorter.PrintStatistics();
+                    Program.Sorter.PrintStatistics();
                     break;
                 case 7:
                     Console.WriteLine("Goodbye!");
@@ -110,10 +110,10 @@ class Program
     }
     static void AddResult()
     {
-        sorter.AddResult(GetResult());
+        Sorter.AddResult(GetResult());
     }
     static void RemoveResult()
     {
-        sorter.RemoveResult(GetStringInputWithConstraints(StringInputEnum.Surname));
+        Sorter.RemoveResult(GetStringInputWithConstraints(StringInputEnum.Surname));
     }
 }
